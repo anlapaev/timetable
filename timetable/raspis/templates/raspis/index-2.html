@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block section %}
+<section>
+    <div>
+        <div class="extra-left">
+            <h1 class="tegh1">Расписание занятий</h1>
+            <p>Индивидуальное расписание, включающее дисциплины майноров, МАГоЛЕГО и общеуниверситетского пула,
+                доступно в мобильном приложении в <img class="ikon" src="{% static 'img/logo_rasp.jpg' %}" alt=""> <span
+                        style="font-weight: 600;">App</span></p>
+            <p>Это расписание действует с 20 марта до 25 марта</p>
+            <p class="dP">При обнаружении проблем с расписанием просьба обратиться в службу поддержки <a class="links"  href="">для студентов</a> или <a class="links" href="">сотрудников</a></p>
+
+            <form method="GET" action="{% url 'home' %}">
+                <label class="lb-p" for="field_name">Выберите группу:</label>
+                {% csrf_token %}
+                <select class="sl" id="field_name" name="field_name">
+                    {% for item in groups %}
+                    <option value="{{ item.name }}">{{ item.name }}</option>
+                    {% endfor %}
+                </select>
+                <button class="btn-sch" type="submit">Показать</button>
+            </form>
+                <form method="GET" action="{% url 'home' %}">
+                 <label class="lb-p" for="field_teach_name">Выберите преподавателя:</label>
+                    {% csrf_token %}
+                    <select class="sl" id="field_teach_name" name="field_teach_name">
+                        {% for item in teachers %}
+                            <option value="{{ item.name }}">{{ item.name }}</option>
+                    {% endfor %}
+                    </select>
+                    <button class="btn-sch" type="submit">Показать</button>
+                </form>
+        </div>
+        <div class="extra-right">
+            <h1 class="tegh1">DOFO</h1>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+
+
+
+
+
+
+
